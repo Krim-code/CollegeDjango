@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Student List</h1>
+ <table>
+  <tr>
+   <th>First Name</th>
+   <th>Last Name</th>
+   <th>Email</th>
+   <th>Courses</th>
+  </tr>
+  {% for student in students %}
+  <tr>
+   <td>{{ student.first_name }}</td>
+   <td>{{ student.last_name }}</td>
+   <td>{{ student.email }}</td>
+   <td>
+    {% for course in student.courses.all %}
+    {{ course.title }} <br/>
+    {% empty %}
+    No courses enrolled.
+    {% endfor %}
+   </td>
+  </tr>
+  {% endfor %}
+ </table>
+
+ <h1>Department List</h1>
+ <ul>
+  {% for department in departments %}
+  <li><a href="#">{{ department.name }}</a></li>
+  {% endfor %}
+ </ul>
+
+ <table>
+  <tr>
+   <th>Department</th>
+   <th>Course Title</th>
+   <th>Description</th>
+  </tr>
+  {% for course in courses %}
+  <tr>
+   <td>{{ course.department }}</td>
+   <td>{{ course.title }}</td>
+   <td>{{ course.description }}</td>
+  </tr>
+  {% endfor %}
+ </table>
+
+ <h1>Faculty List</h1>
+ <table>
+  <tr>
+   <th>Name</th>
+   <th>Email</th>
+   <th>Department</th>
+  </tr>
+  {% for faculty in faculties %}
+  <tr>
+   <td>{{ faculty.first_name }} {{ faculty.last_name }}</td>
+   <td>{{ faculty.email }}</td>
+   <td>{{ faculty.department }}</td>
+  </tr>
+  {% endfor %}
+ </table>
+
+<h1>Add Student</h1>
+
+{% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Add">
+</form>
+
+{% endblock %}

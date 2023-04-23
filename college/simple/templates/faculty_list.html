@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <table>
+  <tr>
+   <th>Name</th>
+   <th>Email</th>
+   <th>Department</th>
+  </tr>
+  {% for faculty in faculties %}
+  <tr>
+   <td>{{ faculty.first_name }} {{ faculty.last_name }}</td>
+   <td>{{ faculty.email }}</td>
+   <td>{{ faculty.department }}</td>
+  </tr>
+  {% endfor %}
+ </table>
+{% endblock %}
