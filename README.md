@@ -1,5 +1,5 @@
 # CollegeDjango
-
+![Its the best img, realy](/wallhaven-q2py9d.jpg)
 ## Installation
 
 To install and run the project, follow these steps:
